@@ -24,10 +24,6 @@ public class DataStore {
             String hostname = System.getenv("RDS_HOSTNAME");
             String port = System.getenv("RDS_PORT");
             String jdbcUrl = "jdbc:oracle:thin:@" + hostname + ":" + port + ":" + dbName;
-
-
-heeeeellloooo
-
             */
             System.out.println("test");
 
@@ -73,7 +69,6 @@ heeeeellloooo
 
     public static Starship findStarshipById(String starshipId) {
         Session session = getSessionFactory().openSession();
-
         try {
             return (Starship) session.get(Starship.class, starshipId);
         } catch (HibernateException e) {
