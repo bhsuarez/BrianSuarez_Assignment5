@@ -18,4 +18,9 @@ public class PlanetController {
     public Planet getPlanetById(@PathVariable(value = "planetId") String planetId) {
         return DataStore.findPlanetById(planetId);
     }
+
+    @PostMapping(path="/planet/{planetId}", consumes = "application/json")
+    public Planet updatePlanet(@PathVariable(value = "planetId") String planetId, @RequestBody Planet planet) {
+        return DataStore.updatePlanet(planetId, planet);
+    }
 }

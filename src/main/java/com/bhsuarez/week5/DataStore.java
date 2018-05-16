@@ -7,6 +7,7 @@ import com.bhsuarez.week5.models.Planetvisit;
 import com.bhsuarez.week5.models.Starship;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.HibernateException;
 
@@ -45,6 +46,32 @@ public class DataStore {
             List planets = session.createQuery("FROM Planet").list();
             return planets;
         } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    // Updates planet by planetID
+    public static Planet updatePlanet(String planetId, Planet planet){
+        System.out.println("updatePlanet("+planetId+")");
+
+        Session session = getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Planet existing = findPlanetById(planetId);
+            existing.setPlanetId(planet.getPlanetId());
+            existing.setPlanetAtmosphere(planet.getPlanetAtmosphere());
+            existing.setPlanetName(planet.getPlanetName());
+            existing.setPlanetRadius(planet.getPlanetRadius());
+            session.persist(existing);
+
+            transaction.commit();
+            return (Planet) session.get(Planet.class, planetId);
+        }catch (HibernateException e) {
+         //   if(transaction != null){ transaction.rollback(); }
             e.printStackTrace();
         } finally {
             session.close();
