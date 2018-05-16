@@ -13,4 +13,9 @@ public class PlanetController {
     public List<Planet> planet() {
         return DataStore.listPlanets();
     }
+
+    @GetMapping("/planet/{planetId}")
+    public Planet getPlanetById(@PathVariable(value = "planetId") String planetId) {
+        return DataStore.findPlanetById(planetId);
+    }
 }
