@@ -21,6 +21,7 @@
         <property name="connection.username">user</property>
         <property name="connection.password">pass</property>
         <mapping class="com.bhsuarez.week5.models.Planet"/>
+        <mapping class="com.bhsuarez.week5.models.Planetvisit"/>
         <mapping class="com.bhsuarez.week5.models.Starship"/>
     </session-factory>
 
