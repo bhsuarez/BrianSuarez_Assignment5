@@ -3,7 +3,7 @@ package com.bhsuarez.week5.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "STARSHIP")
+@Table(name = "starship")
 public class Starship {
 
 

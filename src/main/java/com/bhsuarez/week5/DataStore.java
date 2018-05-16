@@ -66,6 +66,30 @@ public class DataStore {
         return null;
     }
 
+    public static List<Starship> listStarships( ) {
+        System.out.print("listStarships()");
+
+        Session session = getSessionFactory().openSession();
+
+        try {
+
+            List starships = session.createQuery("FROM Starship").list();
+            for (Iterator iterator = starships.iterator(); iterator.hasNext(); ) {
+                Starship starship = (Starship) iterator.next();
+                System.out.print("Name: " + starship.getStarshipName());
+                System.out.print("  Crew Size: " + starship.getStarshipCrewSize());
+                System.out.print("  Ship Class: " + starship.getStarshipClass());
+            }
+
+            return starships;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
 
     public static Starship findStarshipById(String starshipId) {
         Session session = getSessionFactory().openSession();
