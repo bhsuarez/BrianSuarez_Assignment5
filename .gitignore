@@ -24,3 +24,4 @@ hs_err_pid*
 
 # Hibernate config
 /src/main/resources/hibernate.cfg.xml
+/target/classes/hibernate.cfg.xml
