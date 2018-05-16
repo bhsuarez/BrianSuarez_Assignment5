@@ -13,6 +13,9 @@
         <property name = "hibernate.connection.driver_class">
             com.mysql.jdbc.Driver
         </property>
+
+
+        //Update this
         <property name="hbm2ddl.auto">update</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/db</property>
         <property name="connection.username">user</property>
