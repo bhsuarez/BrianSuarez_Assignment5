@@ -54,24 +54,22 @@ public class DataStore {
     }
 
     // Updates planet by planetID
-    public static Planet updatePlanet(String planetId, Planet planet){
+    public static Planet updatePlanet(String planetId, Planet planetInput){
         System.out.println("updatePlanet("+planetId+")");
 
         Session session = getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
+        Transaction transaction = null;
 
         try{
+            transaction = session.beginTransaction();
             Planet existing = findPlanetById(planetId);
-            existing.setPlanetId(planet.getPlanetId());
-            existing.setPlanetAtmosphere(planet.getPlanetAtmosphere());
-            existing.setPlanetName(planet.getPlanetName());
-            existing.setPlanetRadius(planet.getPlanetRadius());
-            session.persist(existing);
-
+            System.out.println("yup");
+            existing = planetInput;
             transaction.commit();
-            return (Planet) session.get(Planet.class, planetId);
+            return existing;
+
         }catch (HibernateException e) {
-         //   if(transaction != null){ transaction.rollback(); }
+            if(transaction != null){ transaction.rollback(); }
             e.printStackTrace();
         } finally {
             session.close();

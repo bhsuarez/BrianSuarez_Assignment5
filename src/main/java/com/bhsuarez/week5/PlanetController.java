@@ -3,6 +3,7 @@ package com.bhsuarez.week5;
 
 import com.bhsuarez.week5.models.Planet;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
 
 import java.util.List;
 
@@ -19,8 +20,8 @@ public class PlanetController {
         return DataStore.findPlanetById(planetId);
     }
 
-    @PostMapping(path="/planet/{planetId}", consumes = "application/json")
-    public Planet updatePlanet(@PathVariable(value = "planetId") String planetId, @RequestBody Planet planet) {
-        return DataStore.updatePlanet(planetId, planet);
+    @PostMapping(value="/planet/{planetId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public Planet updatePlanet(@PathVariable(value = "planetId") String planetId, @RequestBody Planet planetToUpdate) {
+        return DataStore.updatePlanet(planetId, planetToUpdate);
     }
 }
