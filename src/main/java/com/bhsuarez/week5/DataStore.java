@@ -80,6 +80,34 @@ public class DataStore {
         return null;
     }
 
+    // Updates planet by planetID
+    public static Planet addPlanet(String planetId, Planet planetInput){
+
+        Session session = getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Planet existing = new Planet();
+            existing.setPlanetId(planetId);
+            existing.setPlanetAtmosphere(planetInput.getPlanetAtmosphere());
+            existing.setPlanetName(planetInput.getPlanetName());
+            existing.setPlanetRadius(planetInput.getPlanetRadius());
+            System.out.println("Planet "+planetId+" has been added");
+            session.save(existing);
+            transaction.commit();
+
+            return existing;
+
+        }catch (HibernateException e) {
+            if(transaction != null){ transaction.rollback(); }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
     // Returns list of Starship collection
     public static List<Starship> listStarships( ) {
         System.out.print("listStarships()");

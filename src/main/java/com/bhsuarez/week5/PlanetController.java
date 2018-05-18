@@ -20,8 +20,13 @@ public class PlanetController {
         return DataStore.findPlanetById(planetId);
     }
 
-    @PostMapping(value="/planet/{planetId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    @PutMapping(value="/planet/{planetId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
     public Planet updatePlanet(@PathVariable(value = "planetId") String planetId, @RequestBody Planet planetToUpdate) {
         return DataStore.updatePlanet(planetId, planetToUpdate);
+    }
+
+    @PostMapping(value="/planet/{planetId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public Planet addPlanet(@PathVariable(value = "planetId") String planetId, @RequestBody Planet planetToUpdate) {
+        return DataStore.addPlanet(planetId, planetToUpdate);
     }
 }
