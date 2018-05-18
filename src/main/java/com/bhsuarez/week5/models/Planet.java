@@ -26,7 +26,7 @@ public class Planet {
     }
 
     public void setPlanetId(String id) {
-        this.planetId = planetId;
+        this.planetId = id;
     }
 
     public String getPlanetName() {
@@ -42,7 +42,7 @@ public class Planet {
     }
 
     public void setPlanetRadius(String planetRadius) {
-        this.planetAtmosphere = planetAtmosphere;
+        this.planetRadius = planetRadius;
     }
 
     public String getPlanetAtmosphere() {

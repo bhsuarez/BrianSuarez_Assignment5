@@ -63,9 +63,13 @@ public class DataStore {
         try{
             transaction = session.beginTransaction();
             Planet existing = findPlanetById(planetId);
-            System.out.println("yup");
             existing = planetInput;
-            transaction.commit();
+//            session.createQuery("UPDATE Planet SET name='"+existing.getPlanetName()+"',radius="+
+//                    existing.getPlanetRadius()+",atmosphere='"+
+//                    existing.getPlanetAtmosphere()+
+//                    "' WHERE planetId="+planetInput.getPlanetId());
+            System.out.println("yup");
+//            transaction.commit();
             return existing;
 
         }catch (HibernateException e) {
