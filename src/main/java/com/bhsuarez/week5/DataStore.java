@@ -55,7 +55,6 @@ public class DataStore {
 
     // Updates planet by planetID
     public static Planet updatePlanet(String planetId, Planet planetInput){
-        System.out.println("updatePlanet("+planetId+")");
 
         Session session = getSessionFactory().openSession();
         Transaction transaction = null;
@@ -63,13 +62,13 @@ public class DataStore {
         try{
             transaction = session.beginTransaction();
             Planet existing = findPlanetById(planetId);
-            existing = planetInput;
-//            session.createQuery("UPDATE Planet SET name='"+existing.getPlanetName()+"',radius="+
-//                    existing.getPlanetRadius()+",atmosphere='"+
-//                    existing.getPlanetAtmosphere()+
-//                    "' WHERE planetId="+planetInput.getPlanetId());
-            System.out.println("yup");
-//            transaction.commit();
+            existing.setPlanetAtmosphere(planetInput.getPlanetAtmosphere());
+            existing.setPlanetName(planetInput.getPlanetName());
+            existing.setPlanetRadius(planetInput.getPlanetRadius());
+            System.out.println("Planet "+planetId+" has been updated");
+            session.update(existing);
+            transaction.commit();
+
             return existing;
 
         }catch (HibernateException e) {
