@@ -30,8 +30,8 @@ public class PlanetController {
         return DataStore.addPlanet(planetToUpdate);
     }
 
-    @DeleteMapping(value = "/planet/{planetId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
-    public Planet deletePlanet(@PathVariable(value = "planetId") String planetId, @RequestBody Planet planetToUpdate) {
+    @DeleteMapping(value = "/planet/{planetId}")
+    public Planet deletePlanet(@PathVariable(value = "planetId") String planetId) {
         return DataStore.deletePlanet(planetId);
     }
 }

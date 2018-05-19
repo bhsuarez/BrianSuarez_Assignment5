@@ -28,8 +28,8 @@ public class StarshipController {
         return DataStore.addStarship(starship);
     }
 
-    @DeleteMapping(value = "/starship/{starshipId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
-    public Starship deleteStarship(@PathVariable(value = "starshipId") String starshipId, @RequestBody Starship starship) {
+    @DeleteMapping(value = "/starship/{starshipId}")
+    public Starship deleteStarship(@PathVariable(value = "starshipId") String starshipId) {
         return DataStore.deleteStarship(starshipId);
     }
 
