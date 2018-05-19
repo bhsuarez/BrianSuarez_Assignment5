@@ -251,6 +251,34 @@ public class DataStore {
         return null;
     }
 
+    // Adds new planetvisit
+    public static Planetvisit addPlanetVisit(Planetvisit planetVisitInput){
+
+        Session session = getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Planetvisit existing = new Planetvisit();
+            existing.setPlanetId(planetVisitInput.getPlanetId());
+            existing.setStarshipID(planetVisitInput.getStarshipID());
+            existing.setArrivalStarDate(existing.getArrivalStarDate());
+            existing.setDepartureStarDate(existing.getDepartureStarDate());
+            System.out.println("Planet Visit"+existing.getPlanetId()+" has been added");
+            session.save(existing);
+            transaction.commit();
+
+            return existing;
+
+        }catch (HibernateException e) {
+            if(transaction != null){ transaction.rollback(); }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
     // Returns starship collection elements by starshipID
     public static Starship findStarshipById(String starshipId) {
         Session session = getSessionFactory().openSession();
