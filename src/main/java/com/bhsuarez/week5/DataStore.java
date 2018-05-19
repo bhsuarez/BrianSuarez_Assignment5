@@ -108,6 +108,114 @@ public class DataStore {
         return null;
     }
 
+    // Updates planet by planetID
+    public static Planet deletePlanet(String planetId){
+
+        Session session = getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Planet existing = new Planet();
+            existing.setPlanetId(planetId);
+
+            session.delete(existing);
+            System.out.println("Planet "+planetId+" has been deleted");
+            transaction.commit();
+
+            return existing;
+
+        }catch (HibernateException e) {
+            if(transaction != null){ transaction.rollback(); }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    // Updates planet by planetID
+    public static Starship updateStarship(String starShipId, Starship starshipInput){
+
+        Session session = getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Starship existing = findStarshipById(starShipId);
+            existing.setStarshipName(starshipInput.getStarshipName());
+            existing.setStarshipCrewSize(starshipInput.getStarshipCrewSize());
+            existing.setStarshipClass(starshipInput.getStarshipClass());
+            existing.setLaunchStarDate(starshipInput.getLaunchStarDate());
+            System.out.println("Starship "+starShipId+" has been updated");
+            session.update(existing);
+            transaction.commit();
+
+            return existing;
+
+        }catch (HibernateException e) {
+            if(transaction != null){ transaction.rollback(); }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    // Updates planet by planetID
+//    public static Starship addStarship(String starshipId, Planet starshipInput){
+//
+//        Session session = getSessionFactory().openSession();
+//        Transaction transaction = null;
+//
+//        try{
+//            transaction = session.beginTransaction();
+//            Planet existing = new Planet();
+//            existing.setPlanetId(planetId);
+//            existing.setPlanetAtmosphere(planetInput.getPlanetAtmosphere());
+//            existing.setPlanetName(planetInput.getPlanetName());
+//            existing.setPlanetRadius(planetInput.getPlanetRadius());
+//            System.out.println("Planet "+planetId+" has been added");
+//            session.save(existing);
+//            transaction.commit();
+//
+//            return existing;
+//
+//        }catch (HibernateException e) {
+//            if(transaction != null){ transaction.rollback(); }
+//            e.printStackTrace();
+//        } finally {
+//            session.close();
+//        }
+//        return null;
+//    }
+
+    // Updates planet by planetID
+//    public static Starship deleteStarship(String starshipId){
+//
+//        Session session = getSessionFactory().openSession();
+//        Transaction transaction = null;
+//
+//        try{
+//            transaction = session.beginTransaction();
+//            Planet existing = new Planet();
+//            existing.setPlanetId(planetId);
+//
+//            session.delete(existing);
+//            System.out.println("Planet "+planetId+" has been deleted");
+//            transaction.commit();
+//
+//            return existing;
+//
+//        }catch (HibernateException e) {
+//            if(transaction != null){ transaction.rollback(); }
+//            e.printStackTrace();
+//        } finally {
+//            session.close();
+//        }
+//        return null;
+//    }
+
     // Returns list of Starship collection
     public static List<Starship> listStarships( ) {
         System.out.print("listStarships()");

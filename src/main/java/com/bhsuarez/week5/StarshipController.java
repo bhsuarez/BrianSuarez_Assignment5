@@ -1,6 +1,7 @@
 package com.bhsuarez.week5;
 
 import com.bhsuarez.week5.models.Starship;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -15,6 +16,11 @@ public class StarshipController {
     @GetMapping("/starship/{starshipId}")
     public Starship getStarshipById(@PathVariable(value = "starshipId") String starshipId) {
         return DataStore.findStarshipById(starshipId);
+    }
+
+    @PutMapping(value = "/starship/{starshipId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public Starship updateStarship(@PathVariable(value = "starshipId") String starshipId, @RequestBody Starship starship) {
+        return DataStore.updateStarship(starshipId, starship);
     }
 
 
