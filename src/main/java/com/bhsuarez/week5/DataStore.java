@@ -81,7 +81,7 @@ public class DataStore {
     }
 
     // Adds new planet
-    public static Planet addPlanet(String planetId, Planet planetInput){
+    public static Planet addPlanet(Planet planetInput){
 
         Session session = getSessionFactory().openSession();
         Transaction transaction = null;
@@ -89,11 +89,11 @@ public class DataStore {
         try{
             transaction = session.beginTransaction();
             Planet existing = new Planet();
-            existing.setPlanetId(planetId);
+            existing.setPlanetId(planetInput.getPlanetId());
             existing.setPlanetAtmosphere(planetInput.getPlanetAtmosphere());
             existing.setPlanetName(planetInput.getPlanetName());
             existing.setPlanetRadius(planetInput.getPlanetRadius());
-            System.out.println("Planet "+planetId+" has been added");
+            System.out.println("Planet "+existing.getPlanetId()+" has been added");
             session.save(existing);
             transaction.commit();
 

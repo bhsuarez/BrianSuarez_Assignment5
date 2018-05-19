@@ -25,9 +25,9 @@ public class PlanetController {
         return DataStore.updatePlanet(planetId, planetToUpdate);
     }
 
-    @PostMapping(value="/planet/{planetId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
-    public Planet addPlanet(@PathVariable(value = "planetId") String planetId, @RequestBody Planet planetToUpdate) {
-        return DataStore.addPlanet(planetId, planetToUpdate);
+    @PostMapping(value="/planet", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public Planet addPlanet(@RequestBody Planet planetToUpdate) {
+        return DataStore.addPlanet(planetToUpdate);
     }
 
     @DeleteMapping(value = "/planet/{planetId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
