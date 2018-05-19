@@ -9,12 +9,12 @@ import java.util.List;
 @RestController
 public class PlanetVisitController {
 
-    @RequestMapping("/planetvisit")
+    @RequestMapping("/visit")
     public List<Planetvisit> planetVisits() {
         return DataStore.listPlanetVisits();
     }
 
-    @PostMapping(value="/planetvisit", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    @PostMapping(value="/visit", consumes = { MediaType.APPLICATION_JSON_VALUE })
     public Planetvisit addPlanetVisit(@RequestBody Planetvisit planetVisitToAdd) {
         return DataStore.addPlanetVisit(planetVisitToAdd);
     }

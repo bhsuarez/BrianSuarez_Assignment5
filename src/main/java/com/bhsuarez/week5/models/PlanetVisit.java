@@ -25,7 +25,7 @@ public class Planetvisit {
         return planetId;
     }
 
-    public void setPlanetId(String id) {
+    public void setPlanetId(String planetId) {
         this.planetId = planetId;
     }
 
