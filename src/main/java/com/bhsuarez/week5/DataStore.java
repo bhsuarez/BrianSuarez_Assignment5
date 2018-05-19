@@ -163,7 +163,7 @@ public class DataStore {
     }
 
     // Adds starship
-    public static Starship addStarship(String starshipId, Starship starshipInput){
+    public static Starship addStarship(Starship starshipInput){
 
         Session session = getSessionFactory().openSession();
         Transaction transaction = null;
@@ -171,12 +171,12 @@ public class DataStore {
         try{
             transaction = session.beginTransaction();
             Starship existing = new Starship();
-            existing.setStarshipId(starshipId);
+            existing.setStarshipId(starshipInput.getStarshipId());
             existing.setStarshipName(starshipInput.getStarshipName());
             existing.setStarshipCrewSize(starshipInput.getStarshipCrewSize());
             existing.setStarshipClass(starshipInput.getStarshipClass());
             existing.setLaunchStarDate(starshipInput.getLaunchStarDate());
-            System.out.println("Starship "+starshipId+" has been added");
+            System.out.println("Starship "+existing.getStarshipId()+" has been added");
             session.save(existing);
             transaction.commit();
 

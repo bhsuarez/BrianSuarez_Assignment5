@@ -23,9 +23,9 @@ public class StarshipController {
         return DataStore.updateStarship(starshipId, starship);
     }
 
-    @PostMapping(value = "/starship/{starshipId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
-    public Starship addStarship(@PathVariable(value = "starshipId") String starshipId, @RequestBody Starship starship) {
-        return DataStore.addStarship(starshipId, starship);
+    @PostMapping(value = "/starship")
+    public Starship addStarship(@RequestBody Starship starship) {
+        return DataStore.addStarship(starship);
     }
 
     @DeleteMapping(value = "/starship/{starshipId}", consumes = { MediaType.APPLICATION_JSON_VALUE })
