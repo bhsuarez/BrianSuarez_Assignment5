@@ -1,11 +1,10 @@
 package com.bhsuarez.week5.models;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@Table(name = "planetvisit", uniqueConstraints = @UniqueConstraint(columnNames = {"starshipID", "planetID", "arrivalstardate"}))
-public class Planetvisit implements Serializable {
+@Table(name = "planetvisit")
+public class Planetvisit{
 
     public Planetvisit(){}
 
@@ -13,11 +12,9 @@ public class Planetvisit implements Serializable {
     @Column(name = "PLANETID")
     private String planetId;
 
-    @Id
     @Column(name = "STARSHIPID")
     private String starshipID;
 
-    @Id
     @Column(name = "ARRIVALSTARDATE")
     private String arrivalStarDate;
 
