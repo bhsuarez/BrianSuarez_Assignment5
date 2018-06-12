@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Planets</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <style>
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="appController">
+
+
+<h1>Planets</h1>
+
+<table>
+    <tr>
+        <th>Planet Name</th>
+        <th ng-repeat="x in planets">{{x.planetName}}</th>
+    </tr>
+    <tr>
+        <td>Planet ID</td>
+        <td ng-repeat="x in planets">{{x.planetId}}</td>
+    </tr>
+    <tr>
+        <td>Planet Radius</td>
+        <td ng-repeat="x in planets">{{x.planetRadius}}</td>
+    </tr>
+    <tr>
+        <td>Planet Atmosphere</td>
+        <td ng-repeat="x in planets">{{x.planetAtmosphere}}</td>
+    </tr>
+</table>
+
+
+<script src="./js/app.js"></script>
+<script src="./js/controller.js"></script>
+<script src="./js/service.js"></script>
+
+</body>
+</html>
